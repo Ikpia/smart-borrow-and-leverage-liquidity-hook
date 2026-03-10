@@ -1,0 +1,1000 @@
+[
+  {
+    "type": "constructor",
+    "inputs": [
+      {
+        "name": "admin",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "vault_",
+        "type": "address",
+        "internalType": "contract ILPVault"
+      },
+      {
+        "name": "market_",
+        "type": "address",
+        "internalType": "contract IBorrowingMarket"
+      },
+      {
+        "name": "hook_",
+        "type": "address",
+        "internalType": "contract ILeverageLiquidityHook"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "acceptOwnership",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "borrowAsset",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "canBorrow",
+    "inputs": [
+      {
+        "name": "positionId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "additionalDebt",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "defaultStableConfig",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "enabled",
+        "type": "bool",
+        "internalType": "bool"
+      },
+      {
+        "name": "stablePool",
+        "type": "bool",
+        "internalType": "bool"
+      },
+      {
+        "name": "baseLtvBps",
+        "type": "uint16",
+        "internalType": "uint16"
+      },
+      {
+        "name": "liquidationLtvBps",
+        "type": "uint16",
+        "internalType": "uint16"
+      },
+      {
+        "name": "minLtvBps",
+        "type": "uint16",
+        "internalType": "uint16"
+      },
+      {
+        "name": "baseCollateralFactorBps",
+        "type": "uint16",
+        "internalType": "uint16"
+      },
+      {
+        "name": "minCollateralFactorBps",
+        "type": "uint16",
+        "internalType": "uint16"
+      },
+      {
+        "name": "maxVolatilityPenaltyBps",
+        "type": "uint16",
+        "internalType": "uint16"
+      },
+      {
+        "name": "maxDepthPenaltyBps",
+        "type": "uint16",
+        "internalType": "uint16"
+      },
+      {
+        "name": "maxDistancePenaltyBps",
+        "type": "uint16",
+        "internalType": "uint16"
+      },
+      {
+        "name": "maxRangePenaltyBps",
+        "type": "uint16",
+        "internalType": "uint16"
+      },
+      {
+        "name": "targetDepthLiquidity",
+        "type": "uint32",
+        "internalType": "uint32"
+      },
+      {
+        "name": "maxVolatilityEwma",
+        "type": "uint24",
+        "internalType": "uint24"
+      },
+      {
+        "name": "maxCenterDistance",
+        "type": "int24",
+        "internalType": "int24"
+      },
+      {
+        "name": "minRangeWidth",
+        "type": "int24",
+        "internalType": "int24"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "defaultVolatileConfig",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "enabled",
+        "type": "bool",
+        "internalType": "bool"
+      },
+      {
+        "name": "stablePool",
+        "type": "bool",
+        "internalType": "bool"
+      },
+      {
+        "name": "baseLtvBps",
+        "type": "uint16",
+        "internalType": "uint16"
+      },
+      {
+        "name": "liquidationLtvBps",
+        "type": "uint16",
+        "internalType": "uint16"
+      },
+      {
+        "name": "minLtvBps",
+        "type": "uint16",
+        "internalType": "uint16"
+      },
+      {
+        "name": "baseCollateralFactorBps",
+        "type": "uint16",
+        "internalType": "uint16"
+      },
+      {
+        "name": "minCollateralFactorBps",
+        "type": "uint16",
+        "internalType": "uint16"
+      },
+      {
+        "name": "maxVolatilityPenaltyBps",
+        "type": "uint16",
+        "internalType": "uint16"
+      },
+      {
+        "name": "maxDepthPenaltyBps",
+        "type": "uint16",
+        "internalType": "uint16"
+      },
+      {
+        "name": "maxDistancePenaltyBps",
+        "type": "uint16",
+        "internalType": "uint16"
+      },
+      {
+        "name": "maxRangePenaltyBps",
+        "type": "uint16",
+        "internalType": "uint16"
+      },
+      {
+        "name": "targetDepthLiquidity",
+        "type": "uint32",
+        "internalType": "uint32"
+      },
+      {
+        "name": "maxVolatilityEwma",
+        "type": "uint24",
+        "internalType": "uint24"
+      },
+      {
+        "name": "maxCenterDistance",
+        "type": "int24",
+        "internalType": "int24"
+      },
+      {
+        "name": "minRangeWidth",
+        "type": "int24",
+        "internalType": "int24"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "healthFactorWad",
+    "inputs": [
+      {
+        "name": "positionId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "hook",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "contract ILeverageLiquidityHook"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "isHealthy",
+    "inputs": [
+      {
+        "name": "positionId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "isLiquidatable",
+    "inputs": [
+      {
+        "name": "positionId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "market",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "contract IBorrowingMarket"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "maxBorrowable",
+    "inputs": [
+      {
+        "name": "positionId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "owner",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "pendingOwner",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "poolRiskConfig",
+    "inputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "enabled",
+        "type": "bool",
+        "internalType": "bool"
+      },
+      {
+        "name": "stablePool",
+        "type": "bool",
+        "internalType": "bool"
+      },
+      {
+        "name": "baseLtvBps",
+        "type": "uint16",
+        "internalType": "uint16"
+      },
+      {
+        "name": "liquidationLtvBps",
+        "type": "uint16",
+        "internalType": "uint16"
+      },
+      {
+        "name": "minLtvBps",
+        "type": "uint16",
+        "internalType": "uint16"
+      },
+      {
+        "name": "baseCollateralFactorBps",
+        "type": "uint16",
+        "internalType": "uint16"
+      },
+      {
+        "name": "minCollateralFactorBps",
+        "type": "uint16",
+        "internalType": "uint16"
+      },
+      {
+        "name": "maxVolatilityPenaltyBps",
+        "type": "uint16",
+        "internalType": "uint16"
+      },
+      {
+        "name": "maxDepthPenaltyBps",
+        "type": "uint16",
+        "internalType": "uint16"
+      },
+      {
+        "name": "maxDistancePenaltyBps",
+        "type": "uint16",
+        "internalType": "uint16"
+      },
+      {
+        "name": "maxRangePenaltyBps",
+        "type": "uint16",
+        "internalType": "uint16"
+      },
+      {
+        "name": "targetDepthLiquidity",
+        "type": "uint32",
+        "internalType": "uint32"
+      },
+      {
+        "name": "maxVolatilityEwma",
+        "type": "uint24",
+        "internalType": "uint24"
+      },
+      {
+        "name": "maxCenterDistance",
+        "type": "int24",
+        "internalType": "int24"
+      },
+      {
+        "name": "minRangeWidth",
+        "type": "int24",
+        "internalType": "int24"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "renounceOwnership",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setDefaultStableConfig",
+    "inputs": [
+      {
+        "name": "cfg",
+        "type": "tuple",
+        "internalType": "struct DataTypes.PoolRiskConfig",
+        "components": [
+          {
+            "name": "enabled",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "stablePool",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "baseLtvBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "liquidationLtvBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "minLtvBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "baseCollateralFactorBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "minCollateralFactorBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "maxVolatilityPenaltyBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "maxDepthPenaltyBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "maxDistancePenaltyBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "maxRangePenaltyBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "targetDepthLiquidity",
+            "type": "uint32",
+            "internalType": "uint32"
+          },
+          {
+            "name": "maxVolatilityEwma",
+            "type": "uint24",
+            "internalType": "uint24"
+          },
+          {
+            "name": "maxCenterDistance",
+            "type": "int24",
+            "internalType": "int24"
+          },
+          {
+            "name": "minRangeWidth",
+            "type": "int24",
+            "internalType": "int24"
+          }
+        ]
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setDefaultVolatileConfig",
+    "inputs": [
+      {
+        "name": "cfg",
+        "type": "tuple",
+        "internalType": "struct DataTypes.PoolRiskConfig",
+        "components": [
+          {
+            "name": "enabled",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "stablePool",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "baseLtvBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "liquidationLtvBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "minLtvBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "baseCollateralFactorBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "minCollateralFactorBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "maxVolatilityPenaltyBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "maxDepthPenaltyBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "maxDistancePenaltyBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "maxRangePenaltyBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "targetDepthLiquidity",
+            "type": "uint32",
+            "internalType": "uint32"
+          },
+          {
+            "name": "maxVolatilityEwma",
+            "type": "uint24",
+            "internalType": "uint24"
+          },
+          {
+            "name": "maxCenterDistance",
+            "type": "int24",
+            "internalType": "int24"
+          },
+          {
+            "name": "minRangeWidth",
+            "type": "int24",
+            "internalType": "int24"
+          }
+        ]
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setPoolRiskConfig",
+    "inputs": [
+      {
+        "name": "poolId",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      },
+      {
+        "name": "cfg",
+        "type": "tuple",
+        "internalType": "struct DataTypes.PoolRiskConfig",
+        "components": [
+          {
+            "name": "enabled",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "stablePool",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "baseLtvBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "liquidationLtvBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "minLtvBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "baseCollateralFactorBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "minCollateralFactorBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "maxVolatilityPenaltyBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "maxDepthPenaltyBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "maxDistancePenaltyBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "maxRangePenaltyBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "targetDepthLiquidity",
+            "type": "uint32",
+            "internalType": "uint32"
+          },
+          {
+            "name": "maxVolatilityEwma",
+            "type": "uint24",
+            "internalType": "uint24"
+          },
+          {
+            "name": "maxCenterDistance",
+            "type": "int24",
+            "internalType": "int24"
+          },
+          {
+            "name": "minRangeWidth",
+            "type": "int24",
+            "internalType": "int24"
+          }
+        ]
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "snapshot",
+    "inputs": [
+      {
+        "name": "positionId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "s",
+        "type": "tuple",
+        "internalType": "struct DataTypes.RiskSnapshot",
+        "components": [
+          {
+            "name": "rawValueQuote",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "collateralValueQuote",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "debtQuote",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "maxBorrowQuote",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "liquidationValueQuote",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "adjustedLtvBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "adjustedLiquidationLtvBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "adjustedCollateralFactorBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "riskPenaltyBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "healthFactorWad",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "transferOwnership",
+    "inputs": [
+      {
+        "name": "newOwner",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "vault",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "contract ILPVault"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "event",
+    "name": "OwnershipTransferStarted",
+    "inputs": [
+      {
+        "name": "previousOwner",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "newOwner",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "OwnershipTransferred",
+    "inputs": [
+      {
+        "name": "previousOwner",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "newOwner",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "PoolRiskConfigUpdated",
+    "inputs": [
+      {
+        "name": "poolId",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "config",
+        "type": "tuple",
+        "indexed": false,
+        "internalType": "struct DataTypes.PoolRiskConfig",
+        "components": [
+          {
+            "name": "enabled",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "stablePool",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          {
+            "name": "baseLtvBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "liquidationLtvBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "minLtvBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "baseCollateralFactorBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "minCollateralFactorBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "maxVolatilityPenaltyBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "maxDepthPenaltyBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "maxDistancePenaltyBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "maxRangePenaltyBps",
+            "type": "uint16",
+            "internalType": "uint16"
+          },
+          {
+            "name": "targetDepthLiquidity",
+            "type": "uint32",
+            "internalType": "uint32"
+          },
+          {
+            "name": "maxVolatilityEwma",
+            "type": "uint24",
+            "internalType": "uint24"
+          },
+          {
+            "name": "maxCenterDistance",
+            "type": "int24",
+            "internalType": "int24"
+          },
+          {
+            "name": "minRangeWidth",
+            "type": "int24",
+            "internalType": "int24"
+          }
+        ]
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "error",
+    "name": "InvalidPoolConfig",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "OwnableInvalidOwner",
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "OwnableUnauthorizedAccount",
+    "inputs": [
+      {
+        "name": "account",
+        "type": "address",
+        "internalType": "address"
+      }
+    ]
+  },
+  {
+    "type": "error",
+    "name": "UnsupportedBorrowAsset",
+    "inputs": []
+  }
+]

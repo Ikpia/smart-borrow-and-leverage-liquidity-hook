@@ -1,0 +1,12 @@
+{
+  "name": "smart-borrow-and-leverage-liquidity-hook",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "frontend": "python3 -m http.server 4173",
+    "forge:test": "forge test",
+    "forge:build": "forge build",
+    "abis": "./scripts/export_abis.sh"
+  }
+}

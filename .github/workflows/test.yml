@@ -1,19 +1,20 @@
-name: Test Suite
+name: CI
 
 on:
   workflow_dispatch:
-  # push:
-  # pull_request:
-
-env:
-  FOUNDRY_PROFILE: ci
+  push:
+    branches: [main]
+  pull_request:
 
 jobs:
-  test:
-    name: Foundry Project
+  foundry:
     runs-on: ubuntu-latest
+    env:
+      FOUNDRY_PROFILE: ci
+      UNISWAP_V4_COMMIT: a7cf038cd568801a79a9b4cf92cd5b52c95c8585
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
           submodules: recursive
 
@@ -22,13 +23,19 @@ jobs:
         with:
           version: stable
 
+      - name: Bootstrap dependencies
+        run: ./scripts/bootstrap.sh
+
       - name: Build
-        run: |
-          forge --version
-          forge build --sizes
-        id: build
+        run: forge build --sizes
 
       - name: Test
+        run: forge test
+
+      - name: Coverage
+        run: forge coverage --report summary
+
+      - name: ABI determinism
         run: |
-          forge test -vvv
-        id: test
+          ./scripts/export_abis.sh
+          git diff --exit-code -- shared/abis
