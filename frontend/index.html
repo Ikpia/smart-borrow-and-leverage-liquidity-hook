@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leverage Console</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js"></script>
+    <script defer src="./app.js"></script>
+  </head>
+  <body>
+    <div class="ambient"></div>
+    <main class="layout">
+      <header class="hero">
+        <p class="eyebrow">Smart Borrow & Leveraged Liquidity Hook</p>
+        <h1>Leverage Console</h1>
+        <p class="subtext">
+          Borrow against LP-aligned collateral and reinvest deterministically. No keepers. Permissionless liquidation.
+        </p>
+        <div class="hero-actions">
+          <button id="connectBtn" class="primary">Connect Wallet</button>
+          <span id="walletState" class="mono">not connected</span>
+        </div>
+      </header>
+
+      <section class="grid">
+        <article class="card">
+          <h2>Open + Leverage</h2>
+          <label>Collateral Token0 <input id="collateral0" type="number" value="1000" /></label>
+          <label>Collateral Token1 <input id="collateral1" type="number" value="1000" /></label>
+          <label>Borrow Amount <input id="borrowAmount" type="number" value="500" /></label>
+          <label>Liquidity Delta <input id="liquidityDelta" type="number" value="1000" /></label>
+          <label>Min Health (WAD) <input id="minHealthOpen" type="number" value="1000000000000000000" /></label>
+          <button id="openBtn" class="primary">Open Borrow + Reinvest</button>
+        </article>
+
+        <article class="card">
+          <h2>Manage Position</h2>
+          <label>Position ID <input id="positionId" type="number" value="1" /></label>
+          <label>Borrow More <input id="borrowMore" type="number" value="100" /></label>
+          <label>Liquidity Add <input id="liqAdd" type="number" value="100" /></label>
+          <label>Repay Amount <input id="repayAmount" type="number" value="100" /></label>
+          <label>Withdraw Token0 <input id="withdraw0" type="number" value="0" /></label>
+          <label>Withdraw Token1 <input id="withdraw1" type="number" value="0" /></label>
+          <div class="row">
+            <button id="borrowBtn">Borrow + Reinvest</button>
+            <button id="repayBtn">Repay + Unwind</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2>Risk & Liquidation</h2>
+          <label>Stress Tick <input id="stressTick" type="number" value="-6000" /></label>
+          <label>Stress Volatility <input id="stressVol" type="number" value="2000" /></label>
+          <label>Stress Depth <input id="stressDepth" type="number" value="1" /></label>
+          <label>Liquidation Repay <input id="liqRepay" type="number" value="500" /></label>
+          <div class="row">
+            <button id="stressBtn">Apply Stress (mock hook)</button>
+            <button id="liquidateBtn">Liquidate</button>
+          </div>
+          <button id="refreshBtn" class="primary">Refresh Snapshot</button>
+        </article>
+      </section>
+
+      <section class="panel">
+        <h2>Snapshot</h2>
+        <pre id="snapshot" class="mono">{}</pre>
+      </section>
+
+      <section class="panel">
+        <h2>Activity</h2>
+        <pre id="activity" class="mono">Ready.</pre>
+      </section>
+    </main>
+  </body>
+</html>
