@@ -13,3 +13,11 @@ out/
 
 # Node modules
 node_modules/
+
+# Coverage / runtime logs
+lcov.info
+logs/
+
+# Ignore local dependency and UI worktrees
+frontend/
+lib/
