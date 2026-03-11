@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 
 .PHONY: bootstrap build test fuzz invariant coverage abis frontend \
-	deploy-local deploy-testnet \
+	deploy-local deploy-testnet deploy-unichain \
 	demo-local demo-testnet demo-leverage demo-liquidate demo-all \
 	verify-commits verify-deps
 
@@ -21,7 +21,7 @@ invariant:
 	forge test --match-path test/fuzz/ProtocolInvariants.t.sol
 
 coverage:
-	forge coverage --report summary --report lcov
+	./scripts/ensure_coverage_100.sh
 
 abis:
 	./scripts/export_abis.sh
@@ -35,15 +35,18 @@ deploy-local:
 		--private-key $$PRIVATE_KEY --broadcast -vvv
 
 deploy-testnet:
-	forge script script/deploy/DeployProtocol.s.sol:DeployProtocolScript \
-		--rpc-url $$BASE_SEPOLIA_RPC_URL \
+	forge script script/deploy/DeployProtocolUnichain.s.sol:DeployProtocolUnichainScript \
+		--rpc-url $$SEPOLIA_RPC_URL \
 		--private-key $$PRIVATE_KEY --broadcast -vvv
+
+deploy-unichain:
+	./scripts/deploy-unichain.sh
 
 demo-local:
 	./scripts/demo-local.sh
 
 demo-testnet:
-	./scripts/demo-testnet.sh
+	./scripts/demo-testnet.sh all
 
 demo-leverage:
 	./scripts/demo-leverage.sh
@@ -52,7 +55,7 @@ demo-liquidate:
 	./scripts/demo-liquidate.sh
 
 demo-all:
-	./scripts/demo-local.sh
+	./scripts/demo-testnet.sh all
 
 verify-commits:
 	./scripts/verify_commits.sh

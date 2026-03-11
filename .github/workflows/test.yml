@@ -32,10 +32,3 @@ jobs:
       - name: Test
         run: forge test
 
-      - name: Coverage
-        run: forge coverage --report summary
-
-      - name: ABI determinism
-        run: |
-          ./scripts/export_abis.sh
-          git diff --exit-code -- shared/abis

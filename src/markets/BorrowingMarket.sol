@@ -72,6 +72,11 @@ contract BorrowingMarket is IBorrowingMarket, Ownable2Step, ReentrancyGuard {
         _;
     }
 
+    modifier accrues() {
+        if (block.timestamp >= lastAccrualTime) accrueInterest();
+        _;
+    }
+
     constructor(address borrowAsset, address admin) Ownable(admin) {
         token = IERC20(borrowAsset);
         borrowIndexRay = DataTypes.RAY;
@@ -112,9 +117,7 @@ contract BorrowingMarket is IBorrowingMarket, Ownable2Step, ReentrancyGuard {
         emit RateConfigUpdated(config);
     }
 
-    function supply(uint256 assets, address onBehalfOf) external nonReentrant returns (uint256 shares) {
-        accrueInterest();
-
+    function supply(uint256 assets, address onBehalfOf) external nonReentrant accrues returns (uint256 shares) {
         address beneficiary = onBehalfOf == address(0) ? msg.sender : onBehalfOf;
         uint256 assetsBefore = totalAssets();
 
@@ -133,9 +136,7 @@ contract BorrowingMarket is IBorrowingMarket, Ownable2Step, ReentrancyGuard {
         emit Supplied(msg.sender, beneficiary, assets, shares);
     }
 
-    function withdraw(uint256 shares, address receiver) external nonReentrant returns (uint256 assets) {
-        accrueInterest();
-
+    function withdraw(uint256 shares, address receiver) external nonReentrant accrues returns (uint256 assets) {
         if (shares == 0 || shares > supplyShares[msg.sender]) revert InvalidConfig();
 
         assets = (shares * totalAssets()) / totalSupplyShares;
@@ -149,9 +150,12 @@ contract BorrowingMarket is IBorrowingMarket, Ownable2Step, ReentrancyGuard {
         emit Withdrawn(msg.sender, receiver, assets, shares);
     }
 
-    function borrowFor(uint256 positionId, address receiver, uint256 amount) external onlyBorrower nonReentrant {
-        accrueInterest();
-
+    function borrowFor(uint256 positionId, address receiver, uint256 amount)
+        external
+        onlyBorrower
+        nonReentrant
+        accrues
+    {
         if (amount > token.balanceOf(address(this))) revert InsufficientLiquidity();
 
         uint256 scaled = _toScaledUp(amount, borrowIndexRay);
@@ -167,10 +171,9 @@ contract BorrowingMarket is IBorrowingMarket, Ownable2Step, ReentrancyGuard {
         external
         onlyRepayer
         nonReentrant
+        accrues
         returns (uint256 repaid)
     {
-        accrueInterest();
-
         uint256 scaledOutstanding = scaledDebtOf[positionId];
         if (scaledOutstanding == 0 || amount == 0) return 0;
 
@@ -194,9 +197,13 @@ contract BorrowingMarket is IBorrowingMarket, Ownable2Step, ReentrancyGuard {
         emit Repaid(positionId, payer, repaid, scaledReduction);
     }
 
-    function forgiveBadDebt(uint256 positionId) external onlyLiquidationModule nonReentrant returns (uint256 writtenOff) {
-        accrueInterest();
-
+    function forgiveBadDebt(uint256 positionId)
+        external
+        onlyLiquidationModule
+        nonReentrant
+        accrues
+        returns (uint256 writtenOff)
+    {
         uint256 scaledOutstanding = scaledDebtOf[positionId];
         if (scaledOutstanding == 0) return 0;
 
@@ -234,7 +241,6 @@ contract BorrowingMarket is IBorrowingMarket, Ownable2Step, ReentrancyGuard {
 
         uint256 linearInterestFactorRay = DataTypes.RAY + ((ratePerSecondRay * dt));
         uint256 newIndex = (oldIndex * linearInterestFactorRay) / DataTypes.RAY;
-        if (newIndex < oldIndex) newIndex = oldIndex;
 
         borrowIndexRay = newIndex;
         lastAccrualTime = block.timestamp;

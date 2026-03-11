@@ -24,4 +24,7 @@
 forge test
 forge test --match-path test/fuzz/ProtocolFuzz.t.sol
 forge test --match-path test/fuzz/ProtocolInvariants.t.sol
+./scripts/ensure_coverage_100.sh
 ```
+
+`scripts/ensure_coverage_100.sh` enforces `100%` line coverage for protocol contracts (excluding `script/`, `test/`, `lib/`, and `src/mocks/`).

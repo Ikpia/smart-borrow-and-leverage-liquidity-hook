@@ -26,6 +26,17 @@ library EasyPosm {
         bytes actions;
     }
 
+    struct MintEncodeInput {
+        PoolKey poolKey;
+        int24 tickLower;
+        int24 tickUpper;
+        uint256 liquidity;
+        uint256 amount0Max;
+        uint256 amount1Max;
+        address recipient;
+        bytes hookData;
+    }
+
     /// @dev This function supports sending native tokens (ETH), the amount-to-pay is determined by amount0Max.
     ///      Any excess amount is NOT refunded since it is not encoding the SWEEP action
     function mint(
@@ -41,6 +52,16 @@ library EasyPosm {
         bytes memory hookData
     ) internal returns (uint256 tokenId, BalanceDelta delta) {
         (Currency currency0, Currency currency1) = (poolKey.currency0, poolKey.currency1);
+        MintEncodeInput memory mintInput = MintEncodeInput({
+            poolKey: poolKey,
+            tickLower: tickLower,
+            tickUpper: tickUpper,
+            liquidity: liquidity,
+            amount0Max: amount0Max,
+            amount1Max: amount1Max,
+            recipient: recipient,
+            hookData: hookData
+        });
 
         MintData memory mintData = MintData({
             balance0Before: currency0.balanceOf(address(this)),
@@ -53,8 +74,7 @@ library EasyPosm {
             uint8(Actions.MINT_POSITION), uint8(Actions.SETTLE_PAIR), uint8(Actions.SWEEP), uint8(Actions.SWEEP)
         );
 
-        mintData.params[0] =
-            abi.encode(poolKey, tickLower, tickUpper, liquidity, amount0Max, amount1Max, recipient, hookData);
+        mintData.params[0] = _encodeMintParams(mintInput);
         mintData.params[1] = abi.encode(currency0, currency1);
         mintData.params[2] = abi.encode(currency0, recipient);
         mintData.params[3] = abi.encode(currency1, recipient);
@@ -67,6 +87,19 @@ library EasyPosm {
         delta = toBalanceDelta(
             -(mintData.balance0Before - currency0.balanceOf(address(this))).toInt128(),
             -(mintData.balance1Before - currency1.balanceOf(address(this))).toInt128()
+        );
+    }
+
+    function _encodeMintParams(MintEncodeInput memory input) private pure returns (bytes memory) {
+        return abi.encode(
+            input.poolKey,
+            input.tickLower,
+            input.tickUpper,
+            input.liquidity,
+            input.amount0Max,
+            input.amount1Max,
+            input.recipient,
+            input.hookData
         );
     }
 
